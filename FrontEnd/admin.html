@@ -614,10 +614,10 @@ display: inline-flex;
 
         <div class="user-area">
           <div>
-            <div class="user-role">Quản trị viên</div>
-            <div class="user-name">Nguyễn Văn A</div>
+            <div class="user-role" id="userRole"></div>
+            <div class="user-name" id="userName"></div>
           </div>
-          <div class="avatar">A</div>
+          <div class="avatar" id="userAvatar"></div>
           <button class="btn-outline">Đăng xuất</button>
         </div>
       </div>
@@ -656,18 +656,17 @@ display: inline-flex;
           <div class="summary-stats">
             <div class="stat-item">
               <div class="stat-label">Lịch hẹn hôm nay</div>
-              <div class="stat-value">128</div>
-              <div class="stat-trend">+12 so với hôm qua</div>
+              <div class="stat-value" id="statAppointments"></div>
+    
             </div>
             <div class="stat-item">
               <div class="stat-label">Bệnh nhân đang khám</div>
-              <div class="stat-value">34</div>
-              <div class="stat-trend">Đang ổn định</div>
+              <div class="stat-value" id="statPatients"></div>
+              
             </div>
             <div class="stat-item">
               <div class="stat-label">Ca cấp cứu</div>
-              <div class="stat-value">5</div>
-              <div class="stat-trend" style="color:#dc2626;">Cảnh báo: tăng nhẹ</div>
+              <div class="stat-value" id="statEmergency"></div>
             </div>
           </div>
 
@@ -768,17 +767,8 @@ display: inline-flex;
                 <th></th>
               </tr>
               </thead>
-              <tbody>
-              <tr>
-                <td>CA_SANG</td>
-                <td>Ca sáng</td>
-                <td>40</td>
-                <td>32</td>
-                <td class="table-actions">
-                  <button>Sửa</button>
-                  <button>Xóa</button>
-                </td>
-              </tr>
+              <tbody id="shiftsTable">
+              
               </tbody>
             </table>
           </div>
@@ -850,31 +840,8 @@ display: inline-flex;
                 <th></th>
               </tr>
               </thead>
-              <tbody>
-              <tr>
-                <td>BN001</td>
-                <td>Nguyễn Văn A</td>
-                <td>Nam</td>
-                <td>12/03/1990</td>
-                <td>0123 456 789</td>
-                <td><span class="tag">Đang điều trị</span></td>
-                <td class="table-actions">
-                  <button>Sửa</button>
-                  <button>Xóa</button>
-                </td>
-              </tr>
-              <tr>
-                <td>BN002</td>
-                <td>Trần Thị B</td>
-                <td>Nữ</td>
-                <td>05/08/1988</td>
-                <td>0987 654 321</td>
-                <td><span class="tag tag-red">Chờ khám</span></td>
-                <td class="table-actions">
-                  <button>Sửa</button>
-                  <button>Xóa</button>
-                </td>
-              </tr>
+              <tbody id="patientsTable">
+              
               </tbody>
             </table>
           </div>
@@ -937,18 +904,8 @@ display: inline-flex;
                 <th></th>
               </tr>
               </thead>
-              <tbody>
-              <tr>
-                <td>BS001</td>
-                <td>BS. Lê Văn C</td>
-                <td>Nội tổng quát</td>
-                <td>c.le@example.com</td>
-                <td>0901 234 567</td>
-                <td class="table-actions">
-                  <button>Sửa</button>
-                  <button>Xóa</button>
-                </td>
-              </tr>
+              <tbody id="doctorsTable"></tbody>
+              
               </tbody>
             </table>
           </div>
@@ -1005,17 +962,8 @@ display: inline-flex;
                 <th></th>
               </tr>
               </thead>
-              <tbody>
-              <tr>
-                <td>NOI01</td>
-                <td>Nội tổng hợp</td>
-                <td>12</td>
-                <td>Khám và điều trị nội khoa</td>
-                <td class="table-actions">
-                  <button>Sửa</button>
-                  <button>Xóa</button>
-                </td>
-              </tr>
+              <tbody id="departmentsTable"></tbody>
+              
               </tbody>
             </table>
           </div>
@@ -1083,19 +1031,8 @@ display: inline-flex;
                 <th></th>
               </tr>
               </thead>
-              <tbody>
-              <tr>
-                <td>LH001</td>
-                <td>BN001</td>
-                <td>BS001</td>
-                <td>02/12/2025</td>
-                <td>09:30</td>
-                <td><span class="tag">Đã xác nhận</span></td>
-                <td class="table-actions">
-                  <button>Sửa</button>
-                  <button>Xóa</button>
-                </td>
-              </tr>
+              <tbody id="appointmentsTable"></tbody>
+              
               </tbody>
             </table>
           </div>
