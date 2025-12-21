@@ -344,12 +344,8 @@ function initDoctorsPage() {
     }
   }
 
-// CẢI TIẾN: Debounce search (chỉ tìm sau khi ngừng gõ 300ms)
-let timeoutId;
-searchInput?.addEventListener('input', () => {
-  clearTimeout(timeoutId);
-  timeoutId = setTimeout(applyFilters, 300);
-});
+  // Bắt sự kiện filters
+  searchInput?.addEventListener('input', applyFilters);
   genderSelect?.addEventListener('change', applyFilters);
   specSelect?.addEventListener('change', applyFilters);
   [tagVideo, tagOver, tagNew].forEach(chk => {
