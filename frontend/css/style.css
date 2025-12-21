@@ -2031,3 +2031,47 @@ a {
   object-fit: cover;
 }
 
+/* ====== NÂNG CẤP NHỎ: UI POLISH ====== */
+
+/* 1. Cuộn trang mượt mà */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 2. Tùy chỉnh thanh cuộn (Scrollbar) cho đẹp hơn trên Webkit (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9; /* Màu nền thanh cuộn */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f84205; /* Màu thanh kéo */
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8; /* Màu khi di chuột vào */
+}
+
+/* Màu thanh cuộn riêng cho phần Chat Widget nội dung */
+.chat-body::-webkit-scrollbar-thumb {
+  background: #bfdbfe;
+}
+.chat-body::-webkit-scrollbar-thumb:hover {
+  background: #60a5fa;
+}
+
+/* 3. Hiệu ứng Fade-in nhẹ cho các thẻ khi xuất hiện (dùng cho JS) */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-up {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
