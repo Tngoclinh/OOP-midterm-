@@ -1,6 +1,6 @@
 function resolveLink(target) {
   const inPartials = location.pathname.includes("/partials/");
-  const rootPages = ["admin.html"];
+  const rootPages = ["login.html"];
   const isExternal =
     target.startsWith("http") || target.startsWith("/") || target.startsWith("../");
 
@@ -29,7 +29,7 @@ function markActiveNav() {
     "doi-ngu-bac-si.html": ".nav-item-doctors",
     "tin-tuc.html": ".nav-item-news",
     "ket-qua-xet-nghiem.html": ".nav-item-results",
-    "admin.html": ".nav-item-admin",
+    "login.html": ".nav-item-login",
   };
 
   const selector = map[key];
