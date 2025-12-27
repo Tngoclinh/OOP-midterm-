@@ -5,27 +5,24 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Entity
-@Table(name = "account")
 @Data
-public class Account {
+@Table(name = "account")
+public class AccountEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "username")
+    @NotBlank(message = "Username is required and cannot be blank")
+    @Column(name = "username", length = 50, nullable = false, unique = true)
     private String username;
 
-    @Column(name = "password")
+    @NotBlank(message = "Password is required and cannot be blank")
+    @Column(name = "password", length = 50, nullable = false)
     private String password;
-
-    @OneToOne
-    @JoinColumn(name = "doctor_id", referencedColumnName = "id")
-    private Doctor doctor;
 }

@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hospital.entity.Account;
+import com.hospital.entity.AccountEntity;
 import com.hospital.payload.request.LoginRequest;
 import com.hospital.payload.response.JwtResponse;
 import com.hospital.service.AccountService;
-import com.hospital.service.JwtUtils;
+import com.hospital.utils.JwtUtils;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,14 +25,13 @@ public class AuthController {
     private final AccountService accountService;
     
     private final JwtUtils jwtUtils;
-
     
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
         try {
             System.out.println("loginRequest = " + loginRequest);
-            Account account =  accountService.findByUsername(loginRequest.getUsername())
+            AccountEntity account =  accountService.findByUsername(loginRequest.getUsername())
                     .orElseThrow(() -> new RuntimeException("Error: Wrong username or password."));
             
             if( account.getPassword().equals(loginRequest.getPassword())) {

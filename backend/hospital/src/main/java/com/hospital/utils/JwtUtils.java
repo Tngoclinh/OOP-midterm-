@@ -1,17 +1,18 @@
-package com.hospital.service;
-
+package com.hospital.utils;
 import java.security.Key;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
-import com.hospital.entity.Account;
+import com.hospital.entity.AccountEntity;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Service
 public class JwtUtils {
@@ -28,7 +29,7 @@ public class JwtUtils {
     /**
      * Sinh JWT token từ thông tin Account
      */
-    public String generateToken(Account account) {
+    public String generateToken(AccountEntity account) {
         return Jwts.builder()
                 .setSubject(String.valueOf(account.getId())) // Lưu ID vào subject
                 .setIssuedAt(new Date())
@@ -84,5 +85,14 @@ public class JwtUtils {
      */
     public boolean isTokenValid(String token) {
         return !isTokenExpired(token) && getIdFromToken(token) != null;
+    }
+
+    // lấy ra jwt token từ request
+    public String parseJwt(HttpServletRequest request) {
+        String headerAuth = request.getHeader("Authorization");
+        if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
+            return headerAuth.substring(7);
+        }
+        return null;
     }
 }

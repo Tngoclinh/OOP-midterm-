@@ -2,6 +2,10 @@ package com.hospital.entity;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.UpdateTimestamp;
+
+import com.hospital.dto.AppointmentStatus;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -10,35 +14,36 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-
 
 @Entity
 @Data
 @Table(name = "appointment")
-public class Appointment {
+public class AppointmentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "slot_id", nullable = false)
-    private Long slotId;
-
-    @Column(name = "appointment_code", length = 20, unique = true)
-    private String appointmentCode;
-
+    @NotNull(message = "Doctor ID is required")
     @Column(name = "doctor_id", nullable = false)
     private Integer doctorId;
 
-    @Column(name = "patient_id", nullable = false)
-    private Integer patientId;
+    @NotNull(message = "Patient identity number is required")
+    @Column(name = "patient_identity_number", nullable = false)
+    private Long patientIdentityNumber;
 
-    @Column(name = "department_id", nullable = false)
+    @Column(name = "department_id")
     private Integer departmentId;
 
+    @Column 
+    private Integer rating;
+    
+    @Column
     private LocalDateTime time;
 
+    @Column
     @Enumerated(EnumType.STRING)
     private AppointmentStatus status = AppointmentStatus.PENDING;
 
@@ -46,5 +51,6 @@ public class Appointment {
     private String notes;
 
     @Column(name = "last_update")
+    @UpdateTimestamp
     private LocalDateTime lastUpdate;
 }

@@ -1,63 +1,61 @@
 package com.hospital.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.hospital.entity.Patient;
+import com.hospital.entity.AppointmentEntity;
+import com.hospital.entity.PatientEntity;
 import com.hospital.repository.PatientRepository;
 
 import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 
 @Service
-public class PatientService{
+@RequiredArgsConstructor
+public class PatientService {
 
     private final PatientRepository repo;
 
-    public PatientService(PatientRepository repo) {
-        this.repo = repo;
-    }
-
-    public List<Patient> findAll() {
+    public List<PatientEntity> findAll() {
         return repo.findAll();
     }
 
-    public Optional<Patient> findById(Integer id) {
-          if (id == null) {
-            throw new IllegalArgumentException("Patient id must not be null");
-        }
-        return repo.findById(id);
+    public PatientEntity findById(Long identityNumber) {
+        return repo.findById(identityNumber)
+                .orElseThrow(() -> new EntityNotFoundException("Patient not found with id=" + identityNumber));
     }
 
-    public Patient save(Patient patient) {
-        if (patient == null) {
-            throw new IllegalArgumentException("Patient must not be null");
+    // Query lấy lịch sử khám của bệnh nhân
+    public List<AppointmentEntity> getAppointmentHistory(Long identityNumber) {
+        if (!repo.existsById(identityNumber)) {
+            throw new EntityNotFoundException("Patient not found with id=" + identityNumber);
         }
+        return repo.findAppointmentsByIdentityNumber(identityNumber);
+    }
+
+    public PatientEntity save(PatientEntity patient) {
+        patient.setLastUpdate(LocalDateTime.now());
         return repo.save(patient);
     }
 
-    public Patient update(Integer id, Patient patient) {
-         if (id == null) {
-            throw new IllegalArgumentException("Patient id must not be null");
+    public PatientEntity update( Long identityNumber ,PatientEntity patient) {
+        if (patient.getLastUpdate() == null) {
+            patient.setLastUpdate(LocalDateTime.now());
         }
-        if (patient == null) {
-            throw new IllegalArgumentException("Patient must not be null");
+        if (!repo.existsById(identityNumber)) {
+            throw new EntityNotFoundException("Patient not found with id=" + patient.getIdentityNumber());
         }
-        if (!repo.existsById(id)) {
-            throw new EntityNotFoundException("Patient not found with id=" + id);
-        }
-        patient.setId(id);
+        patient.setLastUpdate(LocalDateTime.now());
+        patient.setIdentityNumber(identityNumber);
         return repo.save(patient);
     }
 
-    public void deleteById(Integer id) {
-         if (id == null) {
-            throw new IllegalArgumentException("Patient id must not be null");
+    public void deleteById(Long identityNumber) {
+        if (!repo.existsById(identityNumber)) {
+            throw new EntityNotFoundException("Patient not found with id=" + identityNumber);
         }
-        if (!repo.existsById(id)) {
-            throw new EntityNotFoundException("Patient not found with id=" + id);
-        }
-        repo.deleteById(id);
+        repo.deleteById(identityNumber);
     }
 }

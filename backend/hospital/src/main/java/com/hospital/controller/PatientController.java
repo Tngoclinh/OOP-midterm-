@@ -1,6 +1,7 @@
 package com.hospital.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hospital.entity.Patient;
+import com.hospital.entity.AppointmentEntity;
+import com.hospital.entity.PatientEntity;
 import com.hospital.service.PatientService;
 
 import lombok.RequiredArgsConstructor;
@@ -26,32 +28,50 @@ public class PatientController {
 
     private final PatientService service;
 
+    // 1. Lấy danh sách tất cả bệnh nhân
     @GetMapping
-    public List<Patient> list() {
+    public List<PatientEntity> list() {
         return service.findAll();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Patient> get(@PathVariable Integer id) {
-        return service.findById(id).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    // 2. Lấy thông tin chi tiết một bệnh nhân theo số định danh (identityNumber)
+    @GetMapping("/{identityNumber}")
+    public ResponseEntity<PatientEntity> get(@PathVariable Long identityNumber) {
+        try {
+            return ResponseEntity.ok(service.findById(identityNumber));
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
+    // 3. Lấy lịch sử các cuộc hẹn/khám bệnh của bệnh nhân
+    // Vận dụng hàm getAppointmentHistory đã viết trong Service
+    @GetMapping("/appointments/{identityNumber}")
+    public ResponseEntity<List<AppointmentEntity>> getHistory(@PathVariable Long identityNumber) {
+        try {
+            List<AppointmentEntity> history = service.getAppointmentHistory(identityNumber);
+            return ResponseEntity.ok(history);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    // 4. Tạo mới hồ sơ bệnh nhân
     @PostMapping
-    public Patient create(@RequestBody Patient p) {
+    public PatientEntity create(@RequestBody PatientEntity p) {
         return service.save(p);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Patient> update(@PathVariable Integer id, @RequestBody Patient p) {
-        if (!service.findById(id).isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(service.update(id, p));
+    // 5. Cập nhật thông tin bệnh nhân
+    @PutMapping("/{identityNumber}")
+    public ResponseEntity<PatientEntity> update(@PathVariable Long identityNumber, @RequestBody PatientEntity p) {
+        return ResponseEntity.ok(service.update(identityNumber,p));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Integer id) {
-        service.deleteById(id);
+    // 6. Xóa hồ sơ bệnh nhân
+    @DeleteMapping("/{identityNumber}")
+    public ResponseEntity<Map<String, String>> delete(@PathVariable Long identityNumber) {
+        service.deleteById(identityNumber);
         return ResponseEntity.noContent().build();
     }
 }

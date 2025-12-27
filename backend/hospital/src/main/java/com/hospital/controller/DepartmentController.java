@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hospital.entity.Department;
+import com.hospital.entity.DepartmentEntity;
 import com.hospital.service.DepartmentService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,25 +27,25 @@ public class DepartmentController {
     private final DepartmentService service;
 
     @GetMapping
-    public List<Department> list() {
+    public List<DepartmentEntity> list() {
         return service.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Department> get(@PathVariable Integer id) {
+    public ResponseEntity<DepartmentEntity> get(@PathVariable Integer id) {
         return service.findById(id).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Department create(@RequestBody Department dept) {
+    public DepartmentEntity create(@RequestBody DepartmentEntity dept) {
         return service.save(dept);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Department> update(@PathVariable Integer id, @RequestBody Department dept) {
-        if (!service.findById(id).isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<DepartmentEntity> update(
+        @PathVariable Integer id,
+        @RequestBody DepartmentEntity dept) {
+
         return ResponseEntity.ok(service.update(id, dept));
     }
 

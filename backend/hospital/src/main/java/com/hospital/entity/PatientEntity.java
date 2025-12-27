@@ -3,50 +3,51 @@ package com.hospital.entity;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import com.hospital.dto.Gender;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Entity
 @Data
 @Table(name = "patient")
-public class Patient {
+public class PatientEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    @Column(name = "full_name", nullable = false)
-    private String fullName;
-
-    @Column(name = "identity_number", nullable = false)
+    @NotNull(message = "Identity number is required")
+    @Column(name = "identity_number")
     private Long identityNumber;
 
+    @NotBlank(message = "Full name is required")
+    @Column(name = "full_name", nullable = false, length = 50)
+    private String fullName;
+
+    @Column
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 
+    @NotBlank(message = "Phone number is required")
     @Column(length = 30, nullable = false)
     private String phone;
 
+    @Column(length = 200)
     private String email;
 
     @Column(name = "insurance_number", length = 50)
     private String insuranceNumber;
     
-    @Column(length = 50)
+    @Column(length = 100)
     private String address;
-
-    @Column(name = "emergency_contact_name", length = 50)
-    private String emergencyContactName;
 
     @Column(name = "emergency_contact_phone", length = 30)
     private String emergencyContactPhone;

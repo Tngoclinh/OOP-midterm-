@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hospital.entity.Appointment;
+import com.hospital.entity.AppointmentEntity;
 import com.hospital.service.AppointmentService;
+
 import lombok.RequiredArgsConstructor;
 
 
@@ -27,26 +28,23 @@ public class AppointmentController {
     private final AppointmentService service;
 
     @GetMapping
-    public List<Appointment> list() {
+    public List<AppointmentEntity> list() {
         return service.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Appointment> get(@PathVariable Integer id) {
+    public ResponseEntity<AppointmentEntity> get(@PathVariable Integer id) {
         return service.findById(id).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Appointment create(@RequestBody Appointment a) {
+    public AppointmentEntity create(@RequestBody AppointmentEntity a) {
         return service.save(a);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Appointment> update(@PathVariable Integer id, @RequestBody Appointment a) {
-        if (!service.findById(id).isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(service.update(id, a));
+    public ResponseEntity<AppointmentEntity> update(@PathVariable Integer id,@RequestBody AppointmentEntity a) {
+        return ResponseEntity.ok(service.update(id,a));
     }
 
     @DeleteMapping("/{id}")

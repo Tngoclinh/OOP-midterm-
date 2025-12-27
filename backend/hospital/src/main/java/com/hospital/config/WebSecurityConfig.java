@@ -1,10 +1,8 @@
 package com.hospital.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
@@ -48,10 +46,12 @@ public class WebSecurityConfig {
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll() 
-                .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()   
-                .requestMatchers(HttpMethod.GET, "/api/**").permitAll()            
-                .anyRequest().authenticated()                                      
+                .anyRequest().permitAll()
+                // .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll() 
+                // .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()   
+                // .requestMatchers(HttpMethod.GET, "/api/**").permitAll()  
+                // .requestMatchers(HttpMethod.GET,"/uploads/**").permitAll()          
+                // .anyRequest().authenticated()                                      
             );
 
         http.addFilterBefore(jwtAuthTokenFilter, UsernamePasswordAuthenticationFilter.class);
