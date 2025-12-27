@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng nhập Admin</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Liên kết tới CSS của bạn -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng nhập Admin</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-box">
-            <h2>Đăng nhập vào hệ thống</h2>
-            <form action="admin-dashboard.html" method="POST">
-                <div class="textbox">
-                    <input type="text" placeholder="Tên đăng nhập" name="username" required>
-                </div>
-                <div class="textbox">
-                    <input type="password" placeholder="Mật khẩu" name="password" required>
-                </div>
-                <input type="submit" value="Đăng nhập" class="btn-login">
-            </form>
+  <div class="login-container">
+    <div class="login-box">
+      <h2>Đăng nhập vào hệ thống</h2>
+      <form action="admin.html" method="GET">
+        <div class="textbox">
+          <input type="text" placeholder="Tên đăng nhập" name="username" required>
         </div>
+        <div class="textbox">
+          <input type="password" placeholder="Mật khẩu" name="password" required>
+        </div>
+        <input type="submit" value="Đăng nhập" class="btn-login">
+      </form>
     </div>
+  </div>
 </body>
 </html>
 
@@ -33,7 +33,6 @@ body {
     padding: 0;
 }
 
-/* Khung đăng nhập */
 .login-container {
     display: flex;
     justify-content: center;
@@ -91,3 +90,4 @@ body {
 .btn-login:hover {
     background-color: #0056b3;
 }
+</style>

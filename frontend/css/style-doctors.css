@@ -1,0 +1,317 @@
+/* Doctors listing page */
+.doctors-page { padding: 32px 0 60px; }
+.doctors-banner-section { margin-bottom: 24px; }
+.doctors-banner {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  border-radius: 20px;
+  border: 2px solid #f6ad55;
+  background: #fff7ed;
+  text-align: center;
+  font-weight: 600;
+  color: #c05621;
+}
+.doctors-head h1 {
+  margin: 0 0 8px;
+  font-size: 22px;
+}
+.doctors-head p {
+  margin: 0 0 20px;
+  color: #4b5563;
+  font-size: 14px;
+}
+.doctors-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 24px;
+  align-items: flex-start;
+}
+.doctors-filters {
+  background: #f9fafb;
+  border-radius: 16px;
+  padding: 18px 16px;
+  border: 1px solid #e5e7eb;
+}
+.doctors-filters h2 {
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+.filter-group { margin-bottom: 14px; }
+.filter-group label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.filter-group input[type="text"],
+.filter-group select {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+  outline: none;
+}
+.filter-group input[type="text"]:focus,
+.filter-group select:focus {
+  border-color: #1d4ed8;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+.filter-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.filter-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+.doctors-list-head h2 {
+  margin: 0;
+  font-size: 18px;
+}
+.doctors-list-note {
+  margin: 4px 0 16px;
+  font-size: 13px;
+  color: #6b7280;
+}
+.doctors-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.doctors-empty {
+  margin-top: 16px;
+  font-size: 14px;
+  color: #9ca3af;
+}
+.doctor-card {
+  display: flex;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
+}
+.doctor-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 22px;
+  color: #111827;
+  overflow: hidden;
+}
+.doctor-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.doctor-info h3 {
+  margin: 0 0 4px;
+  font-size: 15px;
+}
+.doctor-specialty {
+  font-size: 13px;
+  color: #2563eb;
+  margin-bottom: 4px;
+}
+.doctor-specialty a {
+  color: inherit;
+  text-decoration: none;
+}
+.doctor-specialty a:hover { text-decoration: underline; }
+.doctor-meta {
+  font-size: 12px;
+  color: #6b7280;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.doctor-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+.doctor-tag {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 11px;
+}
+.doctor-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+.doctor-btn {
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.doctor-btn.primary {
+  background: #1d4ed8;
+  color: #ffffff;
+  border-color: #1d4ed8;
+}
+.doctor-btn.primary:hover { background: #1e40af; }
+.doctor-btn.outline {
+  background: #ffffff;
+  color: #1d4ed8;
+  border-color: #bfdbfe;
+}
+.doctor-btn.outline:hover { background: #eff6ff; }
+.doctors-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 18px;
+}
+.page-btn {
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  background: #ffffff;
+  padding: 4px 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.page-btn.is-active {
+  background: #1d4ed8;
+  color: #ffffff;
+  border-color: #1d4ed8;
+}
+
+/* Doctor modal */
+.doctor-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.35);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 16px;
+}
+.doctor-modal-overlay.open { display: flex; }
+.doctor-modal {
+  background: #ffffff;
+  border-radius: 18px;
+  max-width: 900px;
+  width: min(900px, 100%);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.28);
+  overflow: hidden;
+}
+.doctor-modal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  border-bottom: 1px solid #e5e7eb;
+}
+.doctor-modal-head h3 {
+  margin: 0;
+  color: #0015ff;
+}
+.doctor-modal-close {
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  cursor: pointer;
+  color: #475569;
+}
+.doctor-modal-body {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 18px;
+  padding: 18px;
+  align-items: start;
+}
+.doctor-modal-photo img {
+  width: 100%;
+  border-radius: 16px;
+  object-fit: cover;
+  aspect-ratio: 3 / 4;
+  background: #e5e7eb;
+}
+.doctor-modal-info h2 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  color: #0f172a;
+}
+.doc-chip {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+.doc-chip.spec {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+.doc-chip.email {
+  background: #e0f2fe;
+  color: #1d4ed8;
+}
+.doc-meta {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  display: grid;
+  gap: 8px;
+  font-size: 15px;
+}
+.doc-meta li {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.doc-meta span {
+  color: #475569;
+  min-width: 90px;
+}
+.doc-meta strong { color: #0f172a; }
+.doc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+.doc-tags .tag {
+  background: #eef2ff;
+  color: #4338ca;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+@media (max-width: 768px) {
+  .doctor-modal-body { grid-template-columns: 1fr; }
+}
+@media (max-width: 992px) {
+  .doctors-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 768px) {
+  .doctors-layout { grid-template-columns: 1fr; }
+  .doctors-filters { order: 2; }
+  .doctors-list { order: 1; }
+  .doctors-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,112 @@
+/* Organization page */
+.org-page { padding: 32px 0 60px; }
+.org-banner-section { margin-bottom: 24px; }
+.org-banner {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  border-radius: 20px;
+  border: 2px solid #f6ad55;
+  background: #fff7ed;
+  text-align: center;
+  font-weight: 600;
+  color: #c05621;
+}
+.org-tab-row { margin-bottom: 16px; }
+.org-tab {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: 2px solid #60a5fa;
+  background: #eff6ff;
+  font-weight: 600;
+  color: #1d4ed8;
+}
+.org-tab-active { background: #bfdbfe; }
+.org-leadership {
+  margin-bottom: 32px;
+  text-align: center;
+}
+.org-leadership h2 { margin-bottom: 16px; }
+.org-leader-main {
+  max-width: 260px;
+  margin: 0 auto 20px;
+}
+.org-leader-card img {
+  width: 100%;
+  max-width: 260px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.org-leader-card h3 {
+  margin: 8px 0 4px;
+  font-size: 15px;
+}
+.org-leader-card p {
+  margin: 0;
+  font-size: 14px;
+  color: #334155;
+}
+.org-leader-row {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+}
+.org-leader-row .org-leader-card { max-width: 220px; }
+.org-chart-section { margin-bottom: 32px; }
+.org-chart-button {
+  display: block;
+  margin: 0 auto 16px;
+  padding: 8px 22px;
+  border-radius: 999px;
+  border: 2px solid #1379e6;
+  background: #1c6bbb;
+  color: #f7f8f7;
+  font-weight: 600;
+}
+.org-chart {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+}
+.org-chart-header {
+  background: #1c6bbb;
+  color: #ffffff;
+  text-align: center;
+  padding: 8px 16px;
+  font-weight: 600;
+}
+.org-chart-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid #e5e7eb;
+}
+.org-chart-col + .org-chart-col { border-left: 1px solid #e5e7eb; }
+.org-chart-col-title {
+  background: #fd8b49;
+  padding: 8px 10px;
+  font-weight: 600;
+  font-size: 14px;
+}
+.org-chart-list {
+  list-style: none;
+  margin: 0;
+  padding: 8px 10px 10px;
+  background: #f9fafb;
+  min-height: 160px;
+  font-size: 13px;
+  text-align: left;
+}
+.org-chart-list li + li { margin-top: 4px; }
+@media (max-width: 900px) {
+  .org-leader-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  .org-chart-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  .org-chart-grid { grid-template-columns: 1fr; }
+}

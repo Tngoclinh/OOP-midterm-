@@ -1,0 +1,56 @@
+/* Lab result lookup */
+.lab-page { padding: 32px 0 48px; }
+.lab-head h1 { margin: 4px 0 6px; }
+.lab-form {
+  max-width: 520px;
+  margin-bottom: 20px;
+}
+.lab-result { margin-top: 12px; }
+.lab-status {
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  background: #e2e8f0;
+  color: #0f172a;
+}
+.lab-status.success {
+  background: #ecfdf3;
+  color: #166534;
+  border: 1px solid #22c55e;
+}
+.lab-status.warn {
+  background: #fff4ed;
+  color: #9a3412;
+  border: 1px solid #fb923c;
+}
+.lab-table { display: grid; gap: 8px; }
+.lab-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.04);
+}
+.lab-cell.item {
+  font-weight: 700;
+  color: #0f172a;
+}
+.lab-cell.value {
+  font-weight: 600;
+  color: #2563eb;
+}
+.lab-cell.note { color: #475569; }
+.lab-cell.ref {
+  color: #6b7280;
+  font-size: 13px;
+}
+@media (max-width: 768px) {
+  .lab-row {
+    grid-template-columns: 1fr 1fr;
+    grid-row-gap: 6px;
+  }
+  .lab-cell.ref { grid-column: span 2; }
+}

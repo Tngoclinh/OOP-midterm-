@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
         initChatWidget();
       }
     } catch (err) {
-      console.error("Khong load duoc", file, err);
+      console.error("Không tải được", file, err);
     }
   });
 });
