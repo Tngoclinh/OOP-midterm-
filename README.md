@@ -36,7 +36,7 @@ Dự án **Hệ Thống Quản Lý Bệnh Viện** là một ứng dụng web fu
 
 | Thành phần    | Công nghệ                   |
 | :------------ | :-------------------------- |
-| 🌐 Ngôn ngữ   | HTML, CSS, JavaScript (ES6) |
+| 🌐 Ngôn ngữ   | HTML, CSS, JavaScript       |
 | 📞 API Client | Fetch API                   |
 | 🎨 Styling    | CSS thuần                   |
 | 🏗️ Framework | Không sử dụng               |
@@ -54,7 +54,7 @@ Dự án **Hệ Thống Quản Lý Bệnh Viện** là một ứng dụng web fu
 ├── database/
 │   └── back_up_hospital.sql # File backup CSDL
 ├── frontend/
-│   └── index.html          # Giao diện người dùng
+│   └── index.html          # Giao diện người dùng chạy bắt đầu từ đây
 └── README.md               # File hướng dẫn này
 ```
 
@@ -64,7 +64,7 @@ Dự án **Hệ Thống Quản Lý Bệnh Viện** là một ứng dụng web fu
 
 Cấu trúc quan hệ giữa các bảng trong cơ sở dữ liệu được minh họa dưới đây:
 
-![Sơ đồ ERD của Bệnh viện](assets/er_diagram.png)
+![Sơ đồ ERD của Bệnh viện](assets/erd-diagram.png)
 
 ---
 
@@ -88,12 +88,9 @@ Cấu trúc quan hệ giữa các bảng trong cơ sở dữ liệu được min
 #### a. Khởi tạo Cơ sở dữ liệu
 
 1. **Cài đặt và khởi động MySQL Server.**
-2. Mở MySQL client (ví dụ: MySQL Workbench, DBeaver) và tạo một database mới:
+2. Mở MySQL client (ví dụ: MySQL Workbench, DBeaver).
+3. Mở cái file `database/back_up_hospital.sql` ra và ấn Execute All.
 
-   ```sql
-   CREATE DATABASE hospital_management;
-   ```
-3. Import dữ liệu mẫu từ file `database/back_up_hospital.sql` vào database vừa tạo.
 
 #### b. Cấu hình Backend
 
@@ -101,12 +98,14 @@ Cấu trúc quan hệ giữa các bảng trong cơ sở dữ liệu được min
 2. Chỉnh sửa các thông tin kết nối CSDL cho phù hợp với môi trường của bạn:
 
    ```properties
-   spring.datasource.url=jdbc:mysql://localhost:3306/hospital_management
+   spring.datasource.url=jdbc:mysql://localhost:3306/hospital
    spring.datasource.username=root
    spring.datasource.password=your_password_here
+   app.upload-dir=your_assets_folder_here
    ```
 
    > Thay `your_password_here` bằng mật khẩu MySQL của bạn.
+   > Thay `your_assets_folder_here` bằng đường dẫn đến folder assets ví dụ: file:C:/Users/ADMIN/Desktop/OOP-midterm--tmp-backup-version/OOP-midterm--main-lastest/assets`
 
 #### c. Chạy Backend
 
