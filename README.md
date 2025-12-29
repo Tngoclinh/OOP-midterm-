@@ -64,7 +64,7 @@ Dự án **Hệ Thống Quản Lý Bệnh Viện** là một ứng dụng web fu
 
 Cấu trúc quan hệ giữa các bảng trong cơ sở dữ liệu được minh họa dưới đây:
 
-![Sơ đồ ERD của Bệnh viện](assets/erd-diagram.png)
+![Sơ đồ ERD của Bệnh viện](assets/erd-diagram-v2.png)
 
 ---
 
