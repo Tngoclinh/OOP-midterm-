@@ -70,7 +70,7 @@ Cấu trúc quan hệ giữa các bảng trong cơ sở dữ liệu được min
 
 ## 🎥 Video Demo Dự Án
 
-👉 **YouTube Demo:** [https://www.youtube.com/watch?v=79ztaWB1HkY](https://www.youtube.com/watch?v=79ztaWB1HkY)
+👉 **YouTube Demo:** [https://youtu.be/IYb-c5x6zdE](https://youtu.be/IYb-c5x6zdE)
 
 ---
 
