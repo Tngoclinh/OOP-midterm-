@@ -69,7 +69,7 @@ CREATE TABLE `appointment` (
   KEY `fk_appt_department` (`department_id`),
   CONSTRAINT `fk_appt_department` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`),
   CONSTRAINT `fk_appt_doctor` FOREIGN KEY (`doctor_id`) REFERENCES `doctor` (`id`),
-  CONSTRAINT `fk_appt_patient` FOREIGN KEY (`patient_identity_number`) REFERENCES `patient` (`identity_number`),
+--   CONSTRAINT `fk_appt_patient` FOREIGN KEY (`patient_identity_number`) REFERENCES `patient` (`identity_number`),
   CONSTRAINT `chk_rating_only_completed` CHECK (((`rating` is null) or (`status` = _utf8mb4'COMPLETED'))),
   CONSTRAINT `chk_rating_point` CHECK (((`rating` is null) or (`rating` between 1 and 5)))
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
